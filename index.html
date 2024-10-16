@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch information</title>
+  </head>
+  <body>
+    <div id="info"></div>
+    <script>
+      fetch("http://192.168.5.113:3000/api/user/getuserrights").then((info) =>
+        info.json().then((data) => {
+          if (data.result == "ok") {
+            data.data.forEach((element) => {
+              let newP = document.createElement("p");
+              newP.innerHTML = element.name;
+              document.getElementById("info").appendChild(newP);
+              console.log(element);
+            });
+          }
+        })
+      );
+    </script>
+  </body>
+</html>
